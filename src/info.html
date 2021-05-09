@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tit"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body onload="loadDetails()">
+    <div class="row mx-1">
+        <div class="col-md-6 m-0 p-1">
+            <img src="" alt="Product Image" class="img-responsive img-fluid" id="prod_img" height="100%"
+                style="border: 2px solid black;border-radius: 10px;">
+        </div>
+        <div class="col-md-6 bg-dark text-light m-0 p-2">
+            <h3 id="prod_head"></h3>
+            <hr>
+            <ul id="features" style="font-size: medium;"></ul>
+            <div class="row mx-5 my-4 p-2 ">
+                <i class="fas fa-shipping-fast m-1" style="font-size: 4vw;"></i><span class="px-4"></span>
+                <i class="fas fa-shield-alt ml-4" style="font-size: 4vw;"></i><span class="px-4"></span>
+                <i class="fas fa-money-bill ml-4" style="font-size: 4vw;"></i><span class="px-5"></span>
+                <i class="fas fa-undo-alt ml-2" style="font-size: 4vw;"></i>
+            </div>
+            <div class="row mx-5 p-0">
+                <span style="font-size: 1.3vw;">Fast Delivery</span>
+                <span style="font-size: 1.3vw;" class="ml-4">1 yr warranty</span>
+                <span style="font-size: 1.3vw;" class="ml-4">Pay on Delivery</span>
+                <span style="font-size: 1.3vw;" class="ml-4">7 Days Replacement</span>
+            </div>
+            <br><br><br>
+            <div class="row mr-2 text-success" style="float: right;font-weight: bolder;font-size: x-large;" id="price">
+            </div><br><br>
+            <div class="d-flex justify-content-center m-3 p-3"><button class="btn btn-success btn-lg"
+                    onclick="toCart();save()">Add To
+                    Cart</button>  <button class="btn btn-primary btn-lg mx-5"
+                    onclick="home()">Back To
+                    Home</button></div>
+        
+        </div>
+
+
+    </div>
+    </div>
+    <script src="data.js"></script>
+    <script>
+       
+        var url = window.location.href;
+        var arr = [];
+        var arr2 = [];
+        arr = url.split('?');
+        arr2 = arr[1].split('=');
+        var ename = arr2[0]; var id = arr2[1];
+        function loadDetails() {
+            getItems();
+            if (ename === "laptop") {
+                if (laptops[id] == null) {
+                    window.location.href = "404.html";
+                } else {
+                    document.getElementById("prod_img").src = laptops[id].img_src;
+                    document.getElementById("prod_head").innerHTML = laptops[id].name;
+                    document.getElementById("tit").innerHTML = laptops[id].name;
+                    for (i = 0; i < laptops[id].desc.length; i++) {
+                        var ele = document.createElement("li");
+                        ele.innerHTML = laptops[id].desc[i];
+                        document.getElementById("features").appendChild(ele);
+                    }
+                    document.getElementById("price").innerHTML = "₹"+laptops[id].price;
+                }
+
+            }
+            else if (ename === "Smartphone") {
+                if (smphones[id] == null) {
+                    window.location.href = "404.html";
+                } else {
+                    document.getElementById("prod_img").src = smphones[id].img_src;
+                    document.getElementById("prod_head").innerHTML = smphones[id].name;
+                    document.getElementById("tit").innerHTML = smphones[id].name;
+                    for (i = 0; i < smphones[id].desc.length; i++) {
+                        var ele = document.createElement("li");
+                        ele.innerHTML = smphones[id].desc[i];
+                        document.getElementById("features").appendChild(ele);
+                    }
+                    document.getElementById("price").innerHTML = "₹"+smphones[id].price;
+                }
+            }
+            else if (ename === "Smartwatch") {
+                if (smwatches[id] == null) {
+                    window.location.href = "404.html";
+                } else {
+                    document.getElementById("prod_img").src = smwatches[id].img_src;
+                    document.getElementById("prod_head").innerHTML = smwatches[id].name;
+                    document.getElementById("tit").innerHTML = smwatches[id].name;
+                    for (i = 0; i < smwatches[id].desc.length; i++) {
+                        var ele = document.createElement("li");
+                        ele.innerHTML = smwatches[id].desc[i];
+                        document.getElementById("features").appendChild(ele);
+                    }
+                    document.getElementById("price").innerHTML = "₹"+smwatches[id].price;
+                }
+            }
+
+        }
+        function toCart() {
+            if (ename === "laptop") {
+                cart.push(laptops[id]);
+                alert(" " + laptops[id].name + "\n\nAdded to Cart");
+            }
+            else if (ename === "Smartphone") {
+                cart.push(smphones[id]);
+                alert(" " + smphones[id].name + "\n\nAdded to Cart");
+            }
+            else if (ename === "Smartwatch") {
+                cart.push(smwatches[id]);
+                alert(" " + smwatches[id].name + "\n\nAdded to Cart");
+            }  
+        }
+
+        function home(){
+            window.location.href = "index.html";
+        }
+
+    </script>
+</body>
+
+</html>

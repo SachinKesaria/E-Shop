@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body style="background-color: coral;">
+    <div class="container-fluid d-flex justify-content-center my-4 p-5">
+        <form class="form-group bg-info col-md-4 text-light m-3 p-5" style="border:3px black solid;">
+            <label for="cname"></label>Card Holder's Name
+            <input type="text" class="form-control my-3" name="cname">
+            <label for="cno"></label>Card Number
+            <input type="number" class="form-control my-3" name="cno">
+            <label for="expiry"></label>Expires
+            <input type="month" class="form-control my-3" name="expiry">
+            <label for="cvv"></label>CVV
+            <input type="number" class="form-control my-3" name="cvv">
+            <div class="d-flex justify-content-center py-3">
+                <input type="submit" class="btn btn-success btn-md" value="Pay" style="width: 50%;"
+                    onclick="event.preventDefault(),pay()">
+            </div>
+        </form>
+    </div>
+    <script src="data.js"></script>
+    <script>
+        function pay() {
+            alert("Thank You for Shopping with us!!!\n\n Check out some other products");
+            window.location.href = "index.html";
+            window.location.href = "index.html";
+            cart = [];
+            save();
+        }
+    </script>
+</body>
+
+</html>

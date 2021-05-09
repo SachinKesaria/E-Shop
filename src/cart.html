@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+<body onload="display()" class="bg-info">
+    <div class="container-fluid p-3 " id="main">
+
+    </div>
+    <hr style="width: 90%;border-width: thick;">
+    <div class="container-fluid d-flex justify-content-end p-3 text-light" id="bill">
+        <h2 id="bill_info">
+        </h2>
+        <button class="btn btn-success mx-3" id="pay" onclick="payment()">Proceed to Payment</button>
+        <button class="btn btn-success mx-3" id="pod" onclick="POD()">Pay On Delivery</button>
+    </div>
+    <script src="data.js"></script>
+    <script>
+        var m= document.getElementById("main");
+        var i=0,bill;
+        function display(){
+            if(cart.length!=0){
+            for(i=0;i<cart.length;i++){
+                var card = document.createElement("div");
+                card.className="card col-md-12 my-3";
+                var img = document.createElement("img");
+                var row = document.createElement("div");
+                row.className="row";
+                img.className="col-md-4";
+                img.style.height="1%!important";
+                img.style.float="left";
+                img.src=cart[i].img_src;
+                var divright = document.createElement("div");
+                divright.className="col-md-8";
+                divright.style.float="right";
+                var title = document.createElement("h3");
+                title.innerHTML=cart[i].name;
+                var button = document.createElement("button");
+                button.id=i;
+                button.className="btn btn-primary btn-md mx-2";
+                button.style.float="right";
+                button.innerHTML="Remove from Cart";
+                button.onclick=function (){
+                var self = this.id;
+                cart.splice(self,1);
+                save();
+                location.reload();
+            };
+                var price = document.createElement("div");
+                price.style.fontSize="x-large";
+                price.className="d-flex justify-content-end text-success";
+                price.style.fontWeight="bold";
+                price.innerHTML="₹"+cart[i].price;
+                divright.appendChild(title);
+                divright.appendChild(button);
+                divright.appendChild(price);
+                row.appendChild(img);
+                row.appendChild(divright);
+                card.appendChild(row);
+                m.appendChild(card);
+            }
+            bill=cal();
+            document.getElementById("bill_info").innerHTML="The Final Bill Is: "+bill;
+        }else{
+            document.getElementById("bill").className="d-flex justify-content-center text-light";
+            document.getElementById("pay").style.display="none";
+            document.getElementById("pod").style.display="none";
+            document.getElementById("bill_info").innerHTML="The Cart is Empty!!!!!";    
+        }
+    }
+    function cal(){
+        var sum=0;
+        for(i=0;i<cart.length;i++){
+            sum+=parseInt(cart[i].price);
+        }
+        return sum;
+    }
+    function POD(){
+        alert("Thank You for Shopping with us!!!\n\n Check out some other products");
+        window.location.href="index.html";
+        cart=[];
+        save();
+    }
+    function payment(){
+        window.location.href="payment.html";
+    }
+        
+    </script>
+</body>
+</html>
