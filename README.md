@@ -28,7 +28,7 @@ E-Shop is a website developed to demonstrate the skills of HTML, CSS, Javascript
 - stores data in form of array of objects.
 
 ## 404 Page
-- As the website is dependent on URLs for fetching the data 404 page is very important.
+- As the website is dependent on URLs for fetching the data, 404 page is very important.
 
 ## Possible Improvements
 - Option to track status of delivery.
